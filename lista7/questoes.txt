@@ -1,1 +1,35 @@
+1.	Calcular e escreve o valor de H, sendo H igual a:
+		H = 1/100 + 1/97 + 1/94 + 1/91 + ...
+A precisão de H (o número de termos) deverá ser um valor lido.
+	Obs: não se esqueça que o operador de divisão em Java é sobrecarregado: divisão inteira e divisão real – a operação é definida em termos do tipo dos operandos.
+
+2.	Calcular e escrever os n primeiros termos da sequência abaixo, sendo n um valor lido:
+		1/100,   97/2,   3/94,   91/4,   5/88,   ... 
+
+3.	O D.A. (Diretório Acadêmico) da Ciência da Computação realizou a eleição para sua nova Diretoria. Foram inscritas duas chapas. Construa um programa que leia os votos de cada aluno do Curso e anuncie a chapa vencedora. Para isto, para cada aluno, deverá ser apresentado um menu com as seguintes funcionalidades:
+		0 – Sair do Programa
+		1 – Chapa 1
+		2 – Chapa 2
+		3 – Voto em branco
+		4 – Voto nulo
+	Ao final, o programa deverá apresentar o número de votos de cada chapa e o número de votos brancos e o de nulos. Deverá ainda anunciar qual a chapa vencedora seguida do percentual de votos que ela obteve. Caso ocorra empate das chapas, exibir uma mensagem comunicando o fato.
+•	Caso seja lido um valor fora do domínio da opção do menu, deverá ser exibida uma mensagem de alerta ao usuário e repetir a leitura.
+	
+4.	Calcule e escreva os n primeiros termos Fibonacci, sendo n um valor lido. A sequência Fibonacci é constituída dos seguintes termos:
+		1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+
+5.	Construa um programa que leia uma sequência de números naturais até que o valor zero seja lido (o valor zero deverá ser a flag para finalizar a leitura). Ao interromper a leitura, o programa deverá informar a média dos valores lidos e o maior valor entre eles.
+Obs: note que o valor zero não deverá ser considerado como um valor válido. Ele apenas sinaliza a interrupção da leitura dos valores.
+
+6.	Construa um programa que permita identificar o perfil da turma:
+- Percentual de alunos maiores em idade.
+- Idade da pessoa mais velha.
+- Idade da pessoa mais nova.
+Domínio dos dados:
+		Idade: 1..100
+* Deverão ser rejeitados os valores lidos fora do domínio
+* O número de alunos da turma deverá ser um valor lido
+
+7.	Construa uma versão para a questão anterior em que a finalização do programa não seja definida pelo número de alunos da turma. Ao contrário, a finalização deverá ocorrer a partir da leitura da idade: flag para finalização do programa: idade igual a zero (sair do programa).
+* Lembre-se de ajustar a consistência da idade lida
 
