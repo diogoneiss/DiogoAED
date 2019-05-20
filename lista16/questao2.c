@@ -25,7 +25,7 @@ int main (){
 
     printarConjunto(conjunto);
 
-    printf("\nInsira as posicoes que voce quer trocar.\nLembre que a primeira posicao e [0]\nPos1 = ");
+    printf("\nInsira as posicoes que voce quer trocar.\nLembre que a primeira posicao eh [0].\nPos1 = ");
     scanf("%d", &pos1);
 
     printf("Pos2: ");

@@ -1,7 +1,9 @@
 #include <stdio.h>
 
 
-/*    1. Construa uma função que troque o primeiro elemento do arranjo com o último.
+/*    
+
+1. Construa uma função que troque o primeiro elemento do arranjo com o último.
 Argumento: um arranjo de inteiros.
 Teste o método criado a partir de main().
 */

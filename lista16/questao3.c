@@ -31,6 +31,7 @@ Obs: Busque alguma estratégia que não permita o maior valor sobrepor aquele in
 void trocarFinal(int A[]);
 void printarConjunto(int array[]);
 void encerrarPrograma();
+void inserirNoArray(int Array[]);
 
 
 
@@ -42,14 +43,21 @@ int main (){
 
     int conjunto[] = {6, 5, 4, 3, 2, 1};
 
-    printarConjunto(conjunto);
+    int A[] = {6, 5, 4, 3, 2, 1};
+	int B[] = {3, 1, 6, 4, 2, 5};
+	int C[6];
 
-    
+    inserirNoArray(C);
+  
+    trocarFinal(A);
+    trocarFinal(B);
+    trocarFinal(C);
+
     printf("\nArranjo apos modificacao: ");
 
-    trocarFinal(conjunto);
-
-    printarConjunto(conjunto);
+    printarConjunto(A);
+    printarConjunto(B);
+    printarConjunto(C);
 
 
     encerrarPrograma();
@@ -59,7 +67,8 @@ return 0;
 
 void trocarFinal(int A[]){
 
-    int antigoUltimo = A[5];
+    int antigoUltimo = A[tamanho -1 ];
+
     int maior = A[0];
 
     int indiceMaior = 0;
@@ -76,7 +85,7 @@ for (int i = 1; i < tamanho; i++)
    }
 }
 
-A[5] = maior;
+A[tamanho-1] = maior;
 
 A[indiceMaior] = antigoUltimo; 
 
@@ -88,6 +97,17 @@ void printarConjunto(int array[]){
 
     for (int i = 0; i < tamanho; i++){
         printf("%d ", array[i]);}
+
+}
+void inserirNoArray(int Array[]){
+
+for (int i = 0; i < tamanho; i++)
+{
+    printf("\nInsira o numero para a %d posicao: ", i+1);
+    scanf("%d", & Array[i]);
+}
+
+
 
 }
 

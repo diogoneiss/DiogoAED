@@ -149,7 +149,7 @@ bool valorInvalido(int num) {
 
     bool invalido = false;
 
-    if(num < 0) invalido = true;
+    if(num < 0 || num > 150) invalido = true;
 
 return invalido;
 

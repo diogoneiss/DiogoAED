@@ -45,30 +45,27 @@ void printarArray(int array[]){
 
 int fibonacci(int num){
 
-    int num1= 0;
-    int num2= 1;
+    int anterior_do_anterior= 0;
+    int anterior= 1;
 
     int resposta = 1;
 
         for(int i = 0; i <= num; i++){
 
-            resposta = num1 + num2;
+            resposta = anterior_do_anterior + anterior;
             
-            num1 = num2;
+            anterior_do_anterior = anterior;
             
-            num2 = resposta; 
+            anterior = resposta; 
 
             }
 
     return resposta;
-
-
 }
 
 void preencherFib(int array[]){
 
     for(int c = 0; c<SIZE; c++){
-
 
     array[c] = fibonacci(array[c]);
 

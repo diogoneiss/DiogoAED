@@ -26,7 +26,7 @@ void lerArranjo(int Array[]);
 
 int main(){
 int A[] = {6, 5, 4, 3, 2, 1};
-int B[] = {3, 1, 6, 4, 2, 5};
+int B[] = {3, 1, -5, 4, 2, 5};
 int C[SIZE];
 
 lerArranjo(C);
@@ -54,7 +54,9 @@ int aux;
 
     for(int i = 0; i < SIZE -1; i++){
 
-        for(int y = i+1; y < SIZE ;y++){    
+        // loop interno para verificar um unico i em relacao a todos os outros i's 
+
+        for(int y = i+1; y < SIZE; y++){    
         
         if(array[i] > array[y]){
         
@@ -67,33 +69,32 @@ int aux;
             array[y] = aux;
 
             }    
-    
         }
-
     }
-
-
 }
+
 
 
 
 void printarArray(int array[]){
 
-for(int i = 0; i < SIZE ; i++){
+    for(int i = 0; i < SIZE ; i++){
 
-    printf("%d ", array[i]);
+        printf("%d ", array[i]);
 
     }
+
+    printf("\n");
+
 }
+
 
 void lerArranjo(int Array[]){
 
-for(int i = 0; i < SIZE; i++){
-    printf("Insira o %do valor: ", i+1);
-    scanf("%d", & Array[i]);
-}
-
-
+    for(int i = 0; i < SIZE; i++){
+        printf("Insira o %do valor: ", i+1);
+        scanf("%d", & Array[i]);
+    }
 }
 
 
