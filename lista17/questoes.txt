@@ -1,0 +1,11 @@
+
+1.	Construa um método que receba duas matrizes de reais e copie a primeira matriz na segunda.
+Obs: Verifique algum cenário que impeça a execução da funcionalidade.
+
+2.	Construa um método que recebe duas matrizes de reais e retorne verdadeiro, se forem exatamente iguais, e falso, caso contrário.
+
+3.	Construa um método que receba uma matriz de reais e um valor real qualquer, chave de pesquisa. O método deverá retornar o número de ocorrências da chave na matriz.
+
+4.	Construa um método que receba uma matriz de reais e calcule e retorne o número da primeira linha da matriz em que está localizado o maior valor nela presente. 
+
+5.	Construa um método que calcule e retorne o número de ocorrências em uma matriz de reais maior que o seu valor médio. A média deverá ser calculada em um método específico para essa funcionalidade.
