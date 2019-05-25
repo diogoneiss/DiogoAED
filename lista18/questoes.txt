@@ -1,0 +1,18 @@
+
+1.	Construa uma função que verifique se um valor real está presente ou não em uma matriz.
+Argumentos do método: uma matriz de reais e um valor real chave da pesquisa.
+Valor de retorno: verdadeiro, se a chave estiver presente na matriz, ou falso, caso contrário.
+
+2.	Construa uma função que retorne verdadeiro se a primeira linha de uma matriz quadrada de reais for igual à sua última linha, e falso, caso contrário.
+Argumento: Uma matriz quadrada de reais.
+
+3.	Construa uma função que retorne verdadeiro se a primeira linha de uma matriz de reais for igual à sua diagonal principal, e falso, caso contrário.
+Argumento: Uma matriz quadrada de reais.
+
+4.	Construa uma função que calcule e retorne o maior valor acima da diagonal principal de uma matriz de reais (não considerar a própria diagonal).
+
+5.	Construa uma função que calcule e retorne a diferença entre o maior valor presente acima da diagonal principal e o maior valor presente abaixo da diagonal principal de uma matriz de reais.
+Projete e implemente quantos métodos julgar necessário.
+
+6.	Construa uma função que calcule e retorne a soma dos valores de uma determinada coluna da matriz. Argumentos do método: uma matriz de reais e um valor inteiro relativo à coluna a ser somada.
+Valor de retorno: um valor real relativo à soma de uma coluna da matriz.
