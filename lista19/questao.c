@@ -9,72 +9,77 @@
 [2] listar os aniversariantes do mes
 */
 
-struct agenda{
+typedef struct {
 
 int mesAniversario;
 char nomeCompleto[50];
 
-};
+}agenda;
 
-struct agenda conjuntoAgenda[SIZE];
+
 
 int escolherMes();
-void adicionarAniversario(int contador);
-void aniversariantesMes(int mes, int contador);
+void adicionarAniversario(int contador, agenda conjuntoAgenda[]);
+void aniversariantesMes(int mes, int contador, agenda conjuntoAgenda[]);
 
 int main(){
 
     int saidaPrograma = 0;
     int opcao;
-        int contador = 0;
+    int contador = 0;
 
-        while(!saidaPrograma){
+    agenda conjuntoAgenda[SIZE];
 
-            printf("Insira a opcao desejada.\n[0] para sair\t[1] para adicionar um aniversariante\t[2] para listar aniversariantes.\n");
-            scanf("%d", & opcao);
+        do{
+
+                printf("Insira a opcao desejada.\n[0] para sair\t[1] para adicionar um aniversariante\t[2] para listar aniversariantes.\n");
+
+                fflush(stdin);
+
+                scanf("%d", & opcao);
 
                 if(opcao == 0){
                         saidaPrograma = 1;
                 }
 
                 else if(opcao == 1){
-                        adicionarAniversario(contador);
+                        adicionarAniversario(contador, conjuntoAgenda);
                         contador++;
                 }
 
                 else if(opcao==2)
-                    aniversariantesMes(escolherMes(), contador);
+                    aniversariantesMes(escolherMes(), contador, conjuntoAgenda);
 
 
                 else
                     puts("Opcao digitada incorretamente.");
-        }
+
+
+
+        }while(!saidaPrograma);
 
     puts("Fim do programa.");
     return 0;
 }
 
-void adicionarAniversario(int contador){
+void adicionarAniversario(int contador, agenda conjuntoAgenda[]){
 
-    //char nome[50];
+
 
     printf("\nInsira o mes de aniversario: ");
+
     scanf("%d", &conjuntoAgenda[contador].mesAniversario);
 
     printf("Insira o nome completo: ");
 
     fflush(stdin);
 
-    scanf("%s", &conjuntoAgenda[contador].nomeCompleto);
-
-    //strcpy(nome, conjuntoAgenda[contador].nomeCompleto);
-
-
+    scanf("%s", &conjuntoAgenda[contador].nomeCompleto[50]);
 
 
 }
 
-void aniversariantesMes(int mes, int contador){
+void aniversariantesMes(int mes, int contador, agenda conjuntoAgenda[]){
 
 for(int i = 0; i <= contador; i++)
 {
@@ -82,11 +87,12 @@ for(int i = 0; i <= contador; i++)
         printf("\n%s", conjuntoAgenda[i].nomeCompleto);
 }
 
-puts("Esses foram os aniversariantes do mes");
+printf("\tEsses foram os aniversariantes do mes\n");
 
 }
 
 int escolherMes(){
+
     int mes;
     puts("Insira o mes que quer listar os aniversariantes");
     scanf("%d", & mes);
