@@ -23,53 +23,54 @@ void adicionarAniversario(int contador);
 void aniversariantesMes(int mes, int contador);
 
 int main(){
-int saidaPrograma = 0;
-int opcao;
-int mes;
-int contador = 0;
 
-    while(!saidaPrograma){
+    int saidaPrograma = 0;
+    int opcao;
+        int contador = 0;
 
-        printf("Insira a opcao desejada.\n[0] para sair,\n[1] para adicionar um aniversariante,\n[2] para listar aniversariantes.\n");
-        scanf("%d", & opcao);
+        while(!saidaPrograma){
 
-      
-            
-            if(opcao == 0){
-                    saidaPrograma = 1;
-            }
+            printf("Insira a opcao desejada.\n[0] para sair\t[1] para adicionar um aniversariante\t[2] para listar aniversariantes.\n");
+            scanf("%d", & opcao);
 
-            else if(opcao == 1){ 
-                    adicionarAniversario(contador);
-                    contador++;
-            }
+                if(opcao == 0){
+                        saidaPrograma = 1;
+                }
 
-            else if(opcao==2)
-                aniversariantesMes(escolherMes(), contador);
-                
+                else if(opcao == 1){
+                        adicionarAniversario(contador);
+                        contador++;
+                }
 
-            else
-                puts("Opcao digitada incorretamente.");
-        
+                else if(opcao==2)
+                    aniversariantesMes(escolherMes(), contador);
 
-    }
+
+                else
+                    puts("Opcao digitada incorretamente.");
+        }
 
     puts("Fim do programa.");
     return 0;
 }
 
 void adicionarAniversario(int contador){
-           
-    char nome[50];
 
-    puts("Insira o nome completo: ");
-    scanf("%s",nome);
-     
-    strcpy(nome, conjuntoAgenda[contador].nomeCompleto);
-   
+    //char nome[50];
 
-    puts("Insira o mes de aniversario: ");
+    printf("\nInsira o mes de aniversario: ");
     scanf("%d", &conjuntoAgenda[contador].mesAniversario);
+
+    printf("Insira o nome completo: ");
+
+    fflush(stdin);
+
+    scanf("%s", &conjuntoAgenda[contador].nomeCompleto);
+
+    //strcpy(nome, conjuntoAgenda[contador].nomeCompleto);
+
+
+
 
 }
 
