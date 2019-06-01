@@ -11,6 +11,7 @@
 
 typedef struct {
 
+int diaAniversario;
 int mesAniversario;
 char nomeCompleto[50];
 
@@ -34,7 +35,6 @@ int main(){
 
                 printf("Insira a opcao desejada.\n[0] para sair\t[1] para adicionar um aniversariante\t[2] para listar aniversariantes.\n");
 
-                fflush(stdin);
 
                 scanf("%d", & opcao);
 
@@ -64,17 +64,20 @@ int main(){
 
 void adicionarAniversario(int contador, agenda conjuntoAgenda[]){
 
+    printf("Insira o nome completo: ");
 
+    fflush(stdin);
+
+    gets(conjuntoAgenda[contador].nomeCompleto);
+
+    printf("\nInsira o dia do aniversario: ");
+
+    scanf("%d", &conjuntoAgenda[contador].diaAniversario);
 
     printf("\nInsira o mes de aniversario: ");
 
     scanf("%d", &conjuntoAgenda[contador].mesAniversario);
 
-    printf("Insira o nome completo: ");
-
-    fflush(stdin);
-
-    scanf("%s", &conjuntoAgenda[contador].nomeCompleto[50]);
 
 
 }
@@ -84,10 +87,10 @@ void aniversariantesMes(int mes, int contador, agenda conjuntoAgenda[]){
 for(int i = 0; i <= contador; i++)
 {
     if(conjuntoAgenda[i].mesAniversario == mes)
-        printf("\n%s", conjuntoAgenda[i].nomeCompleto);
+        printf("\n%s, no dia %d", conjuntoAgenda[i].nomeCompleto, conjuntoAgenda[i].diaAniversario);
 }
 
-printf("\tEsses foram os aniversariantes do mes\n");
+printf("\nEsses foram os aniversariantes do mes\n");
 
 }
 
