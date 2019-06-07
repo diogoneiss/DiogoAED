@@ -80,7 +80,7 @@ public:
             else if(lado1 == lado2 && lado2 == lado3){
                 saida = 1;
             }
-            else if(lado1 != lado2 && lado2 != lado3){
+            else if(lado1 != lado2 && lado2 != lado3 && lado1 != lado3){
                 saida = 3;
             }
             else
