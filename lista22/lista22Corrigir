@@ -1,0 +1,442 @@
+#include <string>
+#include <iostream>
+#define TAM 10
+
+
+using namespace std;
+
+class Triangulo {
+
+private:
+
+    int lado1;
+    int lado2;
+    int lado3;
+
+    int tipo;
+
+    static int contadorTriangulos;
+
+public:
+
+    //metodos construtores
+
+    Triangulo(){
+
+        this->lado1 = 0;
+        this->lado2 = 0;
+        this->lado3 = 0;
+
+        this->contadorTriangulos++;
+
+    }
+
+    Triangulo(int n){
+
+        if(n<0)
+            n = 0;
+
+        this->setLado1(n);
+        this->setLado2(n);
+        this->setLado3(n);
+
+        this->contadorTriangulos++;
+        this->setTipoTriangulo(this->descobrirTipo());
+    }
+
+    Triangulo(int lado1, int lado2, int lado3){
+
+        this->setLado1(lado1);
+        this->setLado2(lado2);
+        this->setLado3(lado3);
+
+        this->contadorTriangulos++;
+
+        this->setTipoTriangulo(this->descobrirTipo());
+    }
+
+    // fim construtores
+
+    // setters
+    void setTipoTriangulo(int tipo){
+        this->tipo = tipo;
+    }
+
+    int getTipoTriangulo(){
+        return this->tipo;
+    }
+
+    void setLado1(int lado1){
+        if (lado1 > 0)
+            this->lado1 = lado1;
+        else
+            this->lado1 = 0;
+    }
+
+    void setLado2(int lado2) {
+        if (lado2 > 0)
+            this->lado2 = lado2;
+        else
+            this->lado2 = 0;
+    }
+
+    void setLado3(int lado3) {
+        if (lado3 > 0)
+            this->lado3 = lado3;
+        else
+            this->lado3 = 0;
+    }
+
+    // getters
+
+    
+    int getLado1() {
+        if (lado1<0)
+            return 0;
+        else
+            return lado1;
+    }
+
+    int getLado2() {
+        if (lado2<0)
+            return 0;
+        else
+            return lado2;
+    }
+
+    int getLado3() {
+        if (this->lado3<0)
+            return 0;
+        else
+            return this->lado3;
+    }
+    static int getContadorTriangulos(){
+        return contadorTriangulos;
+    }
+    
+    // metodos diversos
+
+    int calcularPerimetro() {
+        int perimetro = this->getLado1() + this->getLado2() + this->getLado3();
+        return perimetro;
+    }
+
+    int descobrirTipo() {
+
+        int lado1 = getLado1();
+        int lado2 = getLado2();
+        int lado3 = getLado3();
+
+        int saida;
+
+        if(!(this->trianguloValido()))
+            saida = -1;
+
+        else if (lado1 == 0 || lado2 == 0 || lado3 == 0) {
+            saida = 0;
+        }
+        else if(lado1 == lado2 && lado2 == lado3){
+            saida = 1;
+        }
+        else if(lado1 != lado2 && lado2 != lado3 && lado1 != lado3){
+            saida = 3;
+        }
+        else
+            saida = 2;
+
+        return saida;
+    }
+
+    bool trianguloValido(){
+
+        bool valido;
+
+        int lado1 = getLado1();
+        int lado2 = getLado2();
+        int lado3 = getLado3();
+
+        // joga o valor booleano da expressao em valido
+        valido = ((abs(lado1-lado2)) < lado3 && lado3 < lado1 + lado2);
+
+        return valido;
+    }
+
+    bool compareTo(Triangulo *objetoComparado){
+
+        bool saoIguais = true;
+
+        // ordenar os lados
+
+        int lado1 = getLado1() ;
+
+        int lado1C = objetoComparado->getLado1();
+
+
+        int lado2 = getLado2();
+        int lado2C = objetoComparado->getLado2();
+
+
+        int lado3 = getLado3();
+        int lado3C = objetoComparado->getLado3();
+
+        int ladosComparado[] = {lado1C, lado2C, lado3C};
+
+        int lados[] = {lado1, lado2, lado3};
+
+        // ordenar os arranjos para comparar
+
+        int aux;
+
+        for (int i = 0; i < 3; ++i) {
+            for (int j = i+1; j < 3; ++j) {
+
+                if(lados[j] > lados[i]){
+
+                    aux = lados[i];
+                    lados[i] = lados[j];
+                    lados[j] = aux;
+
+                }
+            }
+        }
+
+        for (int i = 0; i < 3; ++i) {
+            for (int j = i+1; j < 3; ++j) {
+
+                if(ladosComparado[j] > ladosComparado[i]){
+
+                    aux = ladosComparado[i];
+                    ladosComparado[i] = ladosComparado[j];
+                    ladosComparado[j] = aux;
+
+                }
+            }
+        }
+
+        int j = 0;
+
+        while (saoIguais && j < 3 ){
+            if(lados[j] != ladosComparado[j])
+                saoIguais = false;
+        }
+
+
+        return saoIguais;
+
+    }
+
+};
+
+//Protótipos de funcoes
+
+void printarResultados(Triangulo *objeto);
+void mostrarPerimetro(Triangulo *objeto);
+void mostrarResultadosConjunto(Triangulo *conjuntoObj[]);
+void compararTriangulos(Triangulo *conjuntoObj[]);
+void menu();
+void adicionarTriangulo(Triangulo *ptrTrianguloX);
+void mostrarResultadosItem(Triangulo *Obj, int j);
+void listarEquilateros(Triangulo *conjuntoObj[]);
+void submenu(Triangulo *conjuntoObj[]);
+void verificarIguais(Triangulo *conjuntoObj[]);
+
+// fim protótipos
+
+int Triangulo::contadorTriangulos = 0;
+
+
+int main(){
+
+    cout << "Iniciando o programa" << endl;
+
+    menu();
+
+    cout << "\nFim do programa" << endl;
+
+    return 0;
+}
+
+void menu(){
+
+    int opcao;
+
+    // criar arranjo de ponteiros para objetos
+
+    Triangulo *conjuntoPtrs[TAM];
+
+    do {
+        cout << "\nMenu: ";
+        cout << "\n0 Sair do programa (exibir mensagem de agradecimento e encerrar o programa)";
+        cout << "\n1  Criar um triangulo (acrescentar um triangulo no arranjo e ler os valores para os seus lados)";
+        cout << "\n2  Listar triangulos (escrever todos os triangulos informando os lados e o perimetro de cada triângulo)";
+        cout << "\n3  Triangulos iguais (escrever o numero de triangulos iguais presentes no arranjo)";
+        cout << "\n4  Listar os triangulos de um determinado tipo (apenas equilateros, ou apenas isosceles, ou apenas escaleno)";
+        cout << "\n5  Verificar inconsistencias (valores invalidos)";
+
+        cout << "\nInsira a opcao desejada:  ";
+        cin >> opcao;
+
+        switch (opcao){
+            case 0: cout << "\nObrigado por usar o programa!";
+                break;
+
+            case 1: adicionarTriangulo(conjuntoPtrs[Triangulo::getContadorTriangulos()]);
+                break;
+
+            case 2: mostrarResultadosConjunto(conjuntoPtrs);
+                break;
+
+            case 3: verificarIguais(conjuntoPtrs);
+                break;
+
+            case 4: submenu(conjuntoPtrs);
+                break;
+
+            case 5: listarErros(conjuntoPtrs);
+                break;
+
+            default: cout << "Opcao nao existente! Insira novamente.";
+                break;
+        }
+
+    }while(opcao != 0);
+}
+
+void submenu(Triangulo *conjuntoObj[]){
+    int subopcao;
+
+    cout << "\nInsira [0] para printar apenas os equilateros\n[1] para os isosceles\n[2]para os escalenos " << endl;
+    cout << "Opcao: ";
+
+    cin >> subopcao;
+
+    switch (subopcao){
+
+        case 0: listarEquilateros(conjuntoObj);
+            break;
+        case 1: listarIsosceles(conjuntoObj);
+            break;
+        case 2: listarEscalenos(conjuntoObj);
+            break;
+
+        default: cout << "Erro na entrada, repetindo" << endl;
+                submenu(conjuntoObj);
+            break;
+    }
+
+}
+
+void verificarIguais(Triangulo *conjuntoObj[]){
+
+    for (int i = 0; i < Triangulo::getContadorTriangulos(); ++i) {
+        for (int j = i+1; j < Triangulo::getContadorTriangulos(); ++j) {
+            if (conjuntoObj[i]->compareTo(conjuntoObj[j]))
+                cout << "O Triangulo " << i << " eh igual ao triangulo " << j << endl;
+        }
+    }
+}
+
+void listarEquilateros(Triangulo *conjuntoObj[]){
+    for (int i = 0; i < Triangulo::getContadorTriangulos(); ++i) {
+        if(conjuntoObj[i]->getTipoTriangulo() == 1){
+            mostrarResultadosItem(conjuntoObj[i], i);
+        }
+    }
+}
+void listarIsosceles(Triangulo *conjuntoObj[]){
+    for (int i = 0; i < Triangulo::getContadorTriangulos(); ++i) {
+        if(conjuntoObj[i]->getTipoTriangulo() == 2){
+            mostrarResultadosItem(conjuntoObj[i], i);
+        }
+    }
+}
+void listarEscalenos(Triangulo *conjuntoObj[]){
+    for (int i = 0; i < Triangulo::getContadorTriangulos(); ++i) {
+        if(conjuntoObj[i]->getTipoTriangulo() == 3){
+            mostrarResultadosItem(conjuntoObj[i], i);
+        }
+    }
+}
+void listarErros(Triangulo *conjuntoObj[]){
+    for (int i = 0; i < Triangulo::getContadorTriangulos(); ++i) {
+        if(conjuntoObj[i]->getTipoTriangulo() == -1){
+            mostrarResultadosItem(conjuntoObj[i], i);
+        }
+        else if(conjuntoObj[i]->getTipoTriangulo() == 0){
+            mostrarResultadosItem(conjuntoObj[i], i);
+        }
+    }
+}
+
+
+void printarResultados(Triangulo *objeto){
+
+    cout << "Tipo de triangulo: ";
+
+    switch (objeto->descobrirTipo())
+    {
+        case -1:
+            cout << "O triangulo eh invalido, pois nao atende as condicoes de existencia." << endl;
+            break;
+        case 0:
+            cout << "O triangulo eh invalido, algum dos lados eh igual a zero." << endl;
+            break;
+        case 1:
+            cout << "O triangulo eh EQUILATERO" << endl;
+            break;
+        case 2:
+            cout << "O triangulo eh ISOSCELES" << endl;
+            break;
+        case 3:
+            cout << "O triangulo eh ESCALENO" << endl;
+            break;
+
+        default: cout << "Erro!";
+            break;
+    }
+
+}
+
+void mostrarPerimetro(Triangulo *objeto){
+
+    cout << "O perimetro do triangulo eh " << objeto->calcularPerimetro() << endl;
+
+}
+
+void mostrarResultadosItem(Triangulo *Obj, int j){
+    cout << "\nPrintando infos do triangulo " << j+1 << endl;
+    printarResultados(Obj);
+    mostrarPerimetro(Obj);
+}
+
+void mostrarResultadosConjunto(Triangulo *conjuntoObj[]){
+
+    for (int j = 0; j < Triangulo::getContadorTriangulos(); ++j) {
+        cout << "\nPrintando infos do triangulo " << j+1 << endl;
+        printarResultados(conjuntoObj[j]);
+        mostrarPerimetro(conjuntoObj[j]);
+
+    }
+
+}
+
+void adicionarTriangulo(Triangulo *ptrTrianguloX){
+
+    int lado1;
+    int lado2;
+    int lado3;
+
+    cout << "Insira o lado1: ";
+    cin >> lado1;
+
+    cout << "Insira o lado2: ";
+    cin >> lado2;
+
+    cout << "Insira o lado3: ";
+    cin >> lado3;
+
+    ptrTrianguloX = new Triangulo(lado1, lado2, lado3);
+
+    cout << "\nO tipo do triangulo eh " << ptrTrianguloX->descobrirTipo() << endl;
+    
+}
