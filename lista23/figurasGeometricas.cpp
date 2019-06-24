@@ -4,19 +4,22 @@
 
 class FigGeometrica {
     private:
-    static int Quantidade;
+    static int quantidade;
 
     public:
 
-    FigGeometrica() {Quantidade++;}
+    FigGeometrica() {
+        quantidade++;
+    }
 
     // funcoes virtuais
     virtual double perimetro() = 0;
     virtual double area() = 0;
 
     static int getQuantidade() {
-        return Quantidade;
+        return quantidade;
     }
+    
 };
 
 class Circulo : public FigGeometrica {
@@ -24,16 +27,18 @@ class Circulo : public FigGeometrica {
 private:
 
     double raio;
-    static int quantidadeC;
+    static int quantidade;
 
 public:
 
     Circulo(){
-        quantidadeC++;
+        quantidade++;
+        
     }
 
     Circulo(double raio){
-        quantidadeC++;
+        quantidade++;
+        
         setRaio(raio);
     }
 
@@ -53,8 +58,8 @@ public:
         return (3.141592 *getRaio() *getRaio());
     }
 
-    static int getQuantidadeCirculos(){
-        return quantidadeC;
+    static int getQuantidade(){
+        return quantidade;
     }
 
 };
@@ -62,15 +67,17 @@ public:
 class Quadrado : public FigGeometrica{
 private:
     double lado;
-    static int quantidadeQ;
+    static int quantidade;
     
 public:
     Quadrado(){
-        quantidadeQ++;
+        quantidade++;
+        
     }
 
     Quadrado(double lado){
-        quantidadeQ++;
+        quantidade++;
+        
         setLado(lado);
     }
 
@@ -90,8 +97,8 @@ public:
         return (getLado() *getLado());
     }
 
-    static int getQuantidadeQuadrado(){
-        return quantidadeQ;
+    static int getQuantidade(){
+        return quantidade;
     }
 
 };
@@ -104,16 +111,18 @@ private:
     double b;
     double c;
 
-    static int quantidadeT;
+    static int quantidade;
 
 public:
 
   Triangulo(){
-        quantidadeT++;
+        quantidade++;
+        
     }
 
     Triangulo(double a, double b, double c){
-        quantidadeT++;
+        quantidade++;
+       
         setTriangulo(a,b,c);
       
     }
@@ -175,13 +184,134 @@ public:
         return ehValido;
     }
 
-    static int getQuantidadeTriangulo(){
-        return quantidadeT;
+    static int getQuantidade(){
+        return quantidade;
     }
 
 
 };
 
+
+// prototipos
+void submenuQuadrados();
+void submenuTriangulos();
+void submenuCirculos();
+
+//fim prototipos
+
+// setar as variaveis estáticas de quantidade
+int FigGeometrica::quantidade = 0;
+int Quadrado::quantidade = 0;
+int Triangulo::quantidade = 0;
+int Circulo::quantidade = 0;
+
 int main(){
-    std::cout << "Teste" << std::endl;
+
+  int* ptrClasses;  
+
+int opcao;
+
+do{
+
+    std::cout << "\nHa " << FigGeometrica::getQuantidade() << " figuras geometricas."<< std::endl;
+    std::cout << "Insira o numero correspondente ao menu que quer acessar" << std::endl;
+
+    std::cout << "[0] sair do programa" << std::endl;
+    std::cout << "[1] circulo" << std::endl;
+    std::cout << "[2] quadrado" << std::endl;
+    std::cout << "[3] triangulo" << std::endl;
+    
+    std::cin >> opcao;
+
+    switch (opcao)
+    {
+    case 0:
+        break;
+        
+    case 1: submenuCirculos();
+        break;
+
+    case 2: submenuQuadrados();
+        break;
+
+    case 3: submenuTriangulos();        
+        break;
+    
+    default: std::cout << "Opcao invalida, repetindo" << std::endl;
+        break;
+    }
+
+}while(opcao != 0);
+
+std::cout << "Fim do programa." << std::endl;
+
+}
+
+void submenuCirculos(){
+   
+    int raio;
+
+    Circulo *ptrCirculo;
+
+    std::cout << "Insira 0 caso queira voltar ao menu " << std::endl;
+
+    std::cout << "Insira o raio do Circulo a ser criado: ";
+    std::cin >> raio;
+
+    ptrCirculo = new Circulo(raio);
+
+    std::cout << "Perimetro: " << ptrCirculo->perimetro() << std::endl;
+    std::cout << "Area: " << ptrCirculo->area() << std::endl;
+    std::cout << "Num de Circulos: " << ptrCirculo->getQuantidade() << std::endl;
+     
+}
+
+void submenuTriangulos(){
+   
+    
+    int ladoA;
+    int ladoB;
+    int ladoC;
+
+    Triangulo *ptrTriangulo;
+
+    
+
+    std::cout << "Insira 0 caso queira voltar ao menu " << std::endl;
+
+    std::cout << "Insira o lado A do triangulo a ser criado: ";
+    std::cin >> ladoA;
+
+    std::cout << "Insira o lado B do triangulo a ser criado: ";
+    std::cin >> ladoB;
+
+    std::cout << "Insira o lado C do triangulo a ser criado: ";
+    std::cin >> ladoC;
+
+    
+
+    ptrTriangulo = new Triangulo(ladoA, ladoB, ladoC);
+
+    std::cout << "Perimetro: " << ptrTriangulo->perimetro() << std::endl;
+    std::cout << "Area: " << ptrTriangulo->area() << std::endl;
+    std::cout << "Num de triangulos: " << ptrTriangulo->getQuantidade() << std::endl;
+     
+}
+
+void submenuQuadrados(){
+       
+    int lado;
+
+    std::cout << "Insira 0 caso queira voltar ao menu " << std::endl;
+
+    std::cout << "Insira o lado do quadrado a ser criado: ";
+    std::cin >> lado;
+
+    Quadrado *ptrQuadrado;
+    ptrQuadrado = new Quadrado(lado);
+
+    std::cout << "Perimetro: " << ptrQuadrado->perimetro() << std::endl;
+    std::cout << "Area: " << ptrQuadrado->area() << std::endl;
+    std::cout << "Num de quadrados: " << ptrQuadrado->getQuantidade() << std::endl;
+     
 }
