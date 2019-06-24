@@ -1,0 +1,75 @@
+Construa uma nova versão para a manipulação de triângulos. Nela, deverá ser acrescentada a manipulação de outras figuras geométricas: quadrados e círculos. Uma super-classe (classe base) deverá generalizar as propriedades comuns das três figuras geométricas. Em outras palavras, uma figura geométrica poderá se especializar em círculo, quadrado ou triângulo (suas subclasses, ou classes derivadas).
+
+O relacionamento da classe FigGeometrica com as classes Circulo, Quadrado e Triangulo é do tipo is a (é um). É possível fazer uma leitura correta em “Circulo é uma FigGeometrica”, “Quadrado é uma FigGeometrica” e “Triangulo é uma FigGeometrica”.
+
+FigGeometrica não poderá ser instanciada diretamente, apenas na forma especializada de um de seus subtipos, logo é ela uma classe abstrata. Note que o cálculo do perímetro e a área são algoritmos especializados em cada subtipo, não havendo corpo na classe base.
+FigGeometrica
+- Quantidade
++ FigGeometrica()
++ perimetro() : real
++ area() : real
++ quantidade()
+
+
+
+
+Circulo
+
+- raio : real
+- Quantidade
+
++ Circulo()
++ Circulo(real)
++ setRaio(real)
++ getRaio() : real
++ perimetro() : real
++ area() : real
++ quantidade()
+
+
+
+
+Quadrado
+
+- lado : real
+- Quantidade
++ Quadrado()
++ Quadrado(real)
++ setLado(real)
++ getLado() : real
++ perimetro() : real
++ area() : real
++ quantidade()
+
+
+
+
+
+Triangulo
+- a : real
+- b : real
+- c : real
+- Quantidade
++ Triangulo()
++ Triangulo(real)
++ Triangulo(real, real, real)
++ setTriangulo(real,real,real)
++ getA() : real
++ getB() : real
++ getC() : real
++ perimetro() : real
++ area() : real
++ valido() : boolean
++ quantidade()
+ 
+
+Acrescente um nível no menu de opções. O primeiro nível deverá prover as seguintes opções:
+	0 – Sair do programa
+	1 – Círculos
+	2 - Quadrados
+	3 – Triângulos
+
+Após a seleção no primeiro nível, o nível seguinte do menu deverá prover as funcionalidades previstas para cada figura geométrica. A opção zero deverá permitir retornar ao primeiro nível do menu.
+
+A apresentação do menu deverá ser precedida da seguinte informação:
+No momento há XXX figuras geométricas criadas, sendo XXX o número total de figuras geométricas criadas.
