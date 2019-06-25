@@ -1,5 +1,6 @@
 #include <iostream>
 #include <math.h>
+#include <string>
 //superclasse
 
 class FigGeometrica {
@@ -178,16 +179,29 @@ public:
         if(lado1==0 || lado2==0|| lado3==0)
             ehValido = false;
 
-        else if((abs(lado1-lado2) < lado3)&&(lado3<(lado1+lado2)))
+        //verificacao de existencia do triangulo
+        else if (!((abs(lado1-lado2) < lado3)&&(lado3<(lado1+lado2))))
             ehValido = false;
 
         return ehValido;
     }
 
+        std::string printarValidade(){
+
+            std::string validadeTrig;
+
+            if(this->valido())
+                validadeTrig = "O triangulo eh valido";
+
+            else
+                validadeTrig = "O triangulo NAO eh valido";
+
+            return validadeTrig;
+    }
+
     static int getQuantidade(){
         return quantidade;
     }
-
 
 };
 
@@ -220,7 +234,8 @@ do{
     std::cout << "[1] circulo" << std::endl;
     std::cout << "[2] quadrado" << std::endl;
     std::cout << "[3] triangulo" << std::endl;
-    
+    std::cout << "Insira o numero correspondente ao submenu que quer acessar: ";
+
     std::cin >> opcao;
 
     switch (opcao)
@@ -243,6 +258,7 @@ do{
 
 }while(opcao != 0);
 
+std::cout << "Foram criadas " << FigGeometrica::getQuantidade() << " figuras geometricas ao longo do programa."<< std::endl;
 std::cout << "Fim do programa." << std::endl;
 
 }
@@ -277,8 +293,9 @@ void submenuTriangulos(){
     Triangulo *ptrTriangulo;
 
     
-
     std::cout << "Insira 0 caso queira voltar ao menu " << std::endl;
+
+    // atrobuição de lados
 
     std::cout << "Insira o lado A do triangulo a ser criado: ";
     std::cin >> ladoA;
@@ -290,11 +307,13 @@ void submenuTriangulos(){
     std::cin >> ladoC;
 
     
-
     ptrTriangulo = new Triangulo(ladoA, ladoB, ladoC);
+
+    std::string validadeTriangulo = ptrTriangulo->printarValidade();
 
     std::cout << "Perimetro: " << ptrTriangulo->perimetro() << std::endl;
     std::cout << "Area: " << ptrTriangulo->area() << std::endl;
+    std::cout << "Validade: " << validadeTriangulo  << std::endl;
     std::cout << "Num de triangulos: " << ptrTriangulo->getQuantidade() << std::endl;
     
     // destruir o ptr
@@ -315,7 +334,7 @@ void submenuQuadrados(){
 
     std::cout << "Perimetro: " << ptrQuadrado->perimetro() << std::endl;
     std::cout << "Area: " << ptrQuadrado->area() << std::endl;
-    std::cout << "Num de quadrados: " << ptrQuadrado->getQuantidade() << std::endl;
+        std::cout << "Num de quadrados: " << ptrQuadrado->getQuantidade() << std::endl;
     
     // destruir o ptr
     delete ptrQuadrado;
