@@ -213,8 +213,8 @@ int opcao;
 
 do{
 
-    std::cout << "\nHa " << FigGeometrica::getQuantidade() << " figuras geometricas."<< std::endl;
-    std::cout << "Insira o numero correspondente ao menu que quer acessar" << std::endl;
+    std::cout << "\nNo momento ha " << FigGeometrica::getQuantidade() << " figuras geometricas."<< std::endl;
+    std::cout << "Insira o numero correspondente ao submenu que quer acessar" << std::endl;
 
     std::cout << "[0] sair do programa" << std::endl;
     std::cout << "[1] circulo" << std::endl;
@@ -263,7 +263,8 @@ void submenuCirculos(){
     std::cout << "Perimetro: " << ptrCirculo->perimetro() << std::endl;
     std::cout << "Area: " << ptrCirculo->area() << std::endl;
     std::cout << "Num de Circulos: " << ptrCirculo->getQuantidade() << std::endl;
-     
+    // destruir o ptr
+    delete ptrCirculo;
 }
 
 void submenuTriangulos(){
@@ -295,7 +296,9 @@ void submenuTriangulos(){
     std::cout << "Perimetro: " << ptrTriangulo->perimetro() << std::endl;
     std::cout << "Area: " << ptrTriangulo->area() << std::endl;
     std::cout << "Num de triangulos: " << ptrTriangulo->getQuantidade() << std::endl;
-     
+    
+    // destruir o ptr
+    delete ptrTriangulo;
 }
 
 void submenuQuadrados(){
@@ -313,5 +316,7 @@ void submenuQuadrados(){
     std::cout << "Perimetro: " << ptrQuadrado->perimetro() << std::endl;
     std::cout << "Area: " << ptrQuadrado->area() << std::endl;
     std::cout << "Num de quadrados: " << ptrQuadrado->getQuantidade() << std::endl;
-     
+    
+    // destruir o ptr
+    delete ptrQuadrado;
 }
