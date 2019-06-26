@@ -7,9 +7,9 @@
 
 
 // prototipos
-void submenuQuadrados();
-void submenuTriangulos();
-void submenuCirculos();
+void submenuQuadrados(FigGeometrica *&ptrFig);
+void submenuTriangulos(FigGeometrica *&ptrFig);
+void submenuCirculos(FigGeometrica *&ptrFig);
 
 //fim prototipos
 
@@ -21,6 +21,7 @@ int Circulo::quantidade = 0;
 
 int main(){
 
+FigGeometrica *shapes[10];
 
 int opcao;
 
@@ -42,13 +43,13 @@ do{
     case 0:
         break;
         
-    case 1: submenuCirculos();
+    case 1: submenuCirculos(shapes[FigGeometrica::getQuantidade()]);
         break;
 
-    case 2: submenuQuadrados();
+    case 2: submenuQuadrados(shapes[FigGeometrica::getQuantidade()]);
         break;
 
-    case 3: submenuTriangulos();        
+    case 3: submenuTriangulos(shapes[FigGeometrica::getQuantidade()]);        
         break;
     
     default: std::cout << "Opcao invalida, repetindo" << std::endl;
@@ -62,36 +63,30 @@ std::cout << "Fim do programa." << std::endl;
 
 }
 
-void submenuCirculos(){
+void submenuCirculos(FigGeometrica* &ptrFig){
    
     int raio;
-
-    Circulo *ptrCirculo;
 
     std::cout << "Insira 0 caso queira voltar ao menu " << std::endl;
 
     std::cout << "Insira o raio do Circulo a ser criado: ";
     std::cin >> raio;
 
-    ptrCirculo = new Circulo(raio);
+    ptrFig = new Circulo(raio);
 
-    std::cout << "Perimetro: " << ptrCirculo->perimetro() << std::endl;
-    std::cout << "Area: " << ptrCirculo->area() << std::endl;
-    std::cout << "Num de Circulos: " << ptrCirculo->getQuantidade() << std::endl;
-    // destruir o ptr
-    delete ptrCirculo;
+    std::cout << "Perimetro: " << ptrFig->perimetro() << std::endl;
+    std::cout << "Area: " << ptrFig->area() << std::endl;
+    std::cout << "Num de Circulos: " << ptrFig->getQuantidade() << std::endl;
+   
 }
 
-void submenuTriangulos(){
+void submenuTriangulos(FigGeometrica* &ptrFig){
    
     
     int ladoA;
     int ladoB;
     int ladoC;
-
-    Triangulo *ptrTriangulo;
-
-    
+   
     std::cout << "Insira 0 caso queira voltar ao menu " << std::endl;
 
     // atrobuição de lados
@@ -106,20 +101,19 @@ void submenuTriangulos(){
     std::cin >> ladoC;
 
     
-    ptrTriangulo = new Triangulo(ladoA, ladoB, ladoC);
+    ptrFig = new Triangulo(ladoA, ladoB, ladoC);
 
-    std::string validadeTriangulo = ptrTriangulo->printarValidade();
+    std::string validadeTriangulo = ptrFig->printarValidade();
 
-    std::cout << "Perimetro: " << ptrTriangulo->perimetro() << std::endl;
-    std::cout << "Area: " << ptrTriangulo->area() << std::endl;
+    std::cout << "Perimetro: " << ptrFig->perimetro() << std::endl;
+    std::cout << "Area: " << ptrFig->area() << std::endl;
     std::cout << "Validade: " << validadeTriangulo  << std::endl;
-    std::cout << "Num de triangulos: " << ptrTriangulo->getQuantidade() << std::endl;
+    std::cout << "Num de triangulos: " << ptrFig->getQuantidade() << std::endl;
     
-    // destruir o ptr
-    delete ptrTriangulo;
+   
 }
 
-void submenuQuadrados(){
+void submenuQuadrados(FigGeometrica* &ptrFig){
        
     int lado;
 
@@ -128,13 +122,11 @@ void submenuQuadrados(){
     std::cout << "Insira o lado do quadrado a ser criado: ";
     std::cin >> lado;
 
-    Quadrado *ptrQuadrado;
-    ptrQuadrado = new Quadrado(lado);
+    ptrFig = new Quadrado(lado);
 
-    std::cout << "Perimetro: " << ptrQuadrado->perimetro() << std::endl;
-    std::cout << "Area: " << ptrQuadrado->area() << std::endl;
-        std::cout << "Num de quadrados: " << ptrQuadrado->getQuantidade() << std::endl;
+    std::cout << "Perimetro: " << ptrFig->perimetro() << std::endl;
+    std::cout << "Area: " << ptrFig->area() << std::endl;
+    std::cout << "Num de quadrados: " << ptrFig->getQuantidade() << std::endl;
     
-    // destruir o ptr
-    delete ptrQuadrado;
+    
 }
