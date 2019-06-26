@@ -1,0 +1,17 @@
+void submenuCirculos(Circulo *ptrCirculo){
+   
+    int subopcoes;
+    int lado;
+
+    std::cout << "Insira 0 caso queira voltar ao menu " << std::endl;
+
+    std::cout << "Insira o lado do Circulo a ser criado: ";
+    std::cin >> lado;
+
+    ptrCirculo = new Circulo(lado);
+
+    std::cout << "Perimetro: " << ptrCirculo->perimetro() << std::endl;
+    std::cout << "Area: " << ptrCirculo->area() << std::endl;
+    std::cout << "Num de Circulos: " << ptrCirculo->getQuantidade() << std::endl;
+     
+}
