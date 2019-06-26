@@ -1,29 +1,38 @@
 #include <iostream>
-#include <math.h>
 #include <string>
-#include <exception>
 #include "classes.h"
+#include <exception>
+const int TAM = 10;
 
+class Erros : public _exception {
 
-// lidar com erros
-
-class Erro : public _exception {
+private:
 
 public:
-    Erro(){
+    Erros(){
 
     }
+    void dominioInvalido(int& num){
+        std::cout << "O dominio esta invalido, insira um num no dominio" << std::endl;
+        std::cout << "Num inserido: " << num << std::endl;
+    }
+    void arranjoForaDosBounds(){
+        std::cout << "O array excedeu o tamanho maximo, que eh de " << TAM;
+        std::cout << ". Saindo do programa" << std::endl;
+        
+    }
 
-   //const char* what(){}
+
 };
 
-
 // prototipos
-void submenuQuadrados();
-void submenuTriangulos();
-void submenuCirculos();
+void submenuQuadrados(FigGeometrica *&ptrFig);
+void submenuTriangulos(FigGeometrica *&ptrFig);
+void submenuCirculos(FigGeometrica *&ptrFig);
 
 //fim prototipos
+
+
 
 // setar as variaveis estáticas de quantidade
 int FigGeometrica::quantidade = 0;
@@ -31,8 +40,13 @@ int Quadrado::quantidade = 0;
 int Triangulo::quantidade = 0;
 int Circulo::quantidade = 0;
 
+// tamanho do arranjo de objs
+
+
+
 int main(){
 
+FigGeometrica *shapes[TAM];
 
 int opcao;
 
@@ -49,28 +63,38 @@ do{
 
         std::cin >> opcao;
 
-        switch (opcao)
-            {
-            case 0:
-                break;
-                
-            case 1: submenuCirculos();
-                break;
-
-            case 2: submenuQuadrados();
-                break;
-
-            case 3: submenuTriangulos();        
-                break;
-            
-            default: throw(0);
-                break;
-            }
+        if(FigGeometrica::getQuantidade() >= TAM){
+            //sair do loop
+            opcao = 0;
+            throw("Arranjo fora dos limites");
         }
-        
+
+        else if(opcao == 1)               
+            submenuCirculos(shapes[FigGeometrica::getQuantidade()]);
+                
+        else if(opcao == 2)
+            submenuQuadrados(shapes[FigGeometrica::getQuantidade()]);
+                
+        else if(opcao == 3)
+            submenuTriangulos(shapes[FigGeometrica::getQuantidade()]);  
+
+        else if(opcao >3 || opcao < 0)
+            throw(opcao);    
+                 
+                
+        }
+
+    // se o No estiver fora de dominio
     catch(int n){
-        std::cout << "Erro na execucao, repetindo." << std::endl;
+        Erros num;
+        num.dominioInvalido(n);
     }
+
+    catch(const char* letra){
+        Erros texto;
+        texto.arranjoForaDosBounds();
+    }
+    
 
 }while(opcao != 0);
 
@@ -79,36 +103,30 @@ std::cout << "Fim do programa." << std::endl;
 
 }
 
-void submenuCirculos(){
+void submenuCirculos(FigGeometrica* &ptrFig){
    
     int raio;
-
-    Circulo *ptrCirculo;
 
     std::cout << "Insira 0 caso queira voltar ao menu " << std::endl;
 
     std::cout << "Insira o raio do Circulo a ser criado: ";
     std::cin >> raio;
 
-    ptrCirculo = new Circulo(raio);
+    ptrFig = new Circulo(raio);
 
-    std::cout << "Perimetro: " << ptrCirculo->perimetro() << std::endl;
-    std::cout << "Area: " << ptrCirculo->area() << std::endl;
-    std::cout << "Num de Circulos: " << ptrCirculo->getQuantidade() << std::endl;
-    // destruir o ptr
-    delete ptrCirculo;
+    std::cout << "Perimetro: " << ptrFig->perimetro() << std::endl;
+    std::cout << "Area: " << ptrFig->area() << std::endl;
+    std::cout << "Num de Circulos: " << ptrFig->getQuantidade() << std::endl;
+   
 }
 
-void submenuTriangulos(){
+void submenuTriangulos(FigGeometrica* &ptrFig){
    
     
     int ladoA;
     int ladoB;
     int ladoC;
-
-    Triangulo *ptrTriangulo;
-
-    
+   
     std::cout << "Insira 0 caso queira voltar ao menu " << std::endl;
 
     // atrobuição de lados
@@ -123,20 +141,19 @@ void submenuTriangulos(){
     std::cin >> ladoC;
 
     
-    ptrTriangulo = new Triangulo(ladoA, ladoB, ladoC);
+    ptrFig = new Triangulo(ladoA, ladoB, ladoC);
 
-    std::string validadeTriangulo = ptrTriangulo->printarValidade();
+    std::string validadeTriangulo = ptrFig->printarValidade();
 
-    std::cout << "Perimetro: " << ptrTriangulo->perimetro() << std::endl;
-    std::cout << "Area: " << ptrTriangulo->area() << std::endl;
+    std::cout << "Perimetro: " << ptrFig->perimetro() << std::endl;
+    std::cout << "Area: " << ptrFig->area() << std::endl;
     std::cout << "Validade: " << validadeTriangulo  << std::endl;
-    std::cout << "Num de triangulos: " << ptrTriangulo->getQuantidade() << std::endl;
+    std::cout << "Num de triangulos: " << ptrFig->getQuantidade() << std::endl;
     
-    // destruir o ptr
-    delete ptrTriangulo;
+   
 }
 
-void submenuQuadrados(){
+void submenuQuadrados(FigGeometrica* &ptrFig){
        
     int lado;
 
@@ -145,13 +162,10 @@ void submenuQuadrados(){
     std::cout << "Insira o lado do quadrado a ser criado: ";
     std::cin >> lado;
 
-    Quadrado *ptrQuadrado;
-    ptrQuadrado = new Quadrado(lado);
+    ptrFig = new Quadrado(lado);
 
-    std::cout << "Perimetro: " << ptrQuadrado->perimetro() << std::endl;
-    std::cout << "Area: " << ptrQuadrado->area() << std::endl;
-        std::cout << "Num de quadrados: " << ptrQuadrado->getQuantidade() << std::endl;
+    std::cout << "Perimetro: " << ptrFig->perimetro() << std::endl;
+    std::cout << "Area: " << ptrFig->area() << std::endl;
+    std::cout << "Num de quadrados: " << ptrFig->getQuantidade() << std::endl;
     
-    // destruir o ptr
-    delete ptrQuadrado;
 }

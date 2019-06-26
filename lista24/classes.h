@@ -14,6 +14,9 @@ class FigGeometrica {
     // funcoes virtuais
     virtual double perimetro() = 0;
     virtual double area() = 0;
+    virtual std::string printarValidade(){
+
+    }
 
     static int getQuantidade() {
         return quantidade;
@@ -32,12 +35,10 @@ public:
 
     Circulo(){
         quantidade++;
-        
     }
 
     Circulo(double raio){
         quantidade++;
-        
         setRaio(raio);
     }
 
@@ -76,7 +77,6 @@ public:
 
     Quadrado(double lado){
         quantidade++;
-        
         setLado(lado);
     }
 
@@ -121,7 +121,6 @@ public:
 
     Triangulo(double a, double b, double c){
         quantidade++;
-       
         setTriangulo(a,b,c);
       
     }
