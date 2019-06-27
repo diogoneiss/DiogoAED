@@ -63,10 +63,17 @@ do{
 
         std::cin >> opcao;
 
-        if(FigGeometrica::getQuantidade() >= TAM){
+        /* 
+        if (FigGeometrica::getQuantidade() >= TAM){
             //sair do loop
             opcao = 0;
+
             throw("Arranjo fora dos limites");
+
+        }
+        */
+        if(opcao == 0){
+            //fazer nada
         }
 
         else if(opcao == 1)               
@@ -79,8 +86,10 @@ do{
             submenuTriangulos(shapes[FigGeometrica::getQuantidade()]);  
 
         else if(opcao >3 || opcao < 0)
-            throw(opcao);    
-                 
+            throw(opcao);  
+
+        else  
+            throw("erroDiverso");
                 
         }
 
@@ -90,9 +99,20 @@ do{
         num.dominioInvalido(n);
     }
 
-    catch(const char* letra){
+    // array fora dos bounds
+    catch(std::out_of_range objeto){
         Erros texto;
         texto.arranjoForaDosBounds();
+    }
+
+    // sem memoria
+    catch (std::bad_alloc& excepObj){
+    std::cout << "bad_alloc Exception  Out Of Memory " << excepObj.what() << std::endl;
+    }
+
+    //pegar o que sobrou
+    catch(...){
+        std::cout << " Um erro desconhecido aconteceu. "  << std::endl;
     }
     
 

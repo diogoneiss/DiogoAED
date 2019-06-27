@@ -14,8 +14,11 @@ class FigGeometrica {
     // funcoes virtuais
     virtual double perimetro() = 0;
     virtual double area() = 0;
-    virtual std::string printarValidade(){
 
+    //funcao sobrecarregada
+    std::string printarValidade() {
+        std::string retorno = "funcao meramente virtual, nao use";
+        return retorno;
     }
 
     static int getQuantidade() {
@@ -37,13 +40,13 @@ public:
         quantidade++;
     }
 
-    Circulo(double raio){
-        quantidade++;
-        setRaio(raio);
+    Circulo(double raio)
+        : raio(raio)
+    {
+        quantidade++; 
     }
 
     void setRaio(double raio){
-        this->raio = raio;
     }
 
     double getRaio(){
